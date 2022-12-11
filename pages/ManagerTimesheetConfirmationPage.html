@@ -1,0 +1,141 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card"  style="margin-top:5%;">
+                    <!-- <div class="card-header">
+                        <h3 class="m-2">Manager TimeSheet Confirmation Page</h3>
+                    </div> -->
+
+                  
+                    <div class="card-body pt-2 pl-3 pr-3 pb-1">
+                        <div class="d-flex justify-content-between mb-1 ">
+
+                            <div>
+                                <button type="button" class="btn btn-primary btn-sm" onclick="confirmSelectedList()" style="font-size:12px">Confirm</button>
+                                <button type="button" class="btn btn-danger btn-sm"  style="font-size:12px" onclick="modalReject()"> Reject </button>
+                            </div>
+                            <div>
+                                <label style="font-size: 14px; "class="">From :</label>
+                                <input type="date" class="form-control-sm" id="managerfromdate"
+                                    style="border:1px solid rgb(224, 223, 223); border-radius: 5px;" value="" onchange="managerFromDateFilter()">
+                                <label class="ml-3" style="font-size: 14px;">To :</label>
+                                <input type="date" class="form-control-sm" id="managertodate"
+                                    style="border:1px solid rgb(224, 223, 223);border-radius: 5px;" value="">
+                                
+                                <button type="button" class="btn btn-primary btn-sm" onclick="managerDateFilter()" style="font-size: 12px;"><i class="fas fa-search"></i></button>
+                                <button type="button" class="btn btn-primary btn-sm" data-toggle="collapse"
+                                    aria-expanded="true" aria-controls="collapseOne" data-target="#collapseOne" style="font-size: 12px;"><i class="fas fa-light fa-filter" title="Advanced Search"></i></button>
+                                
+                            </div>    
+
+                            <div>
+                                <button type="button" value="Excel" id="btn-myIcon" class="btn btn-outline-success btn-sm" title="Download Current Page" onclick="clickManagerExcel()" style="font-size: 12px;"><i id="myIcon" class="fas fa-regular fa-file-excel text-green"></i></button>
+                                <button type="button" value="All Excel" id="btn-myIcon" class="btn btn-outline-primary btn-sm" title="Download All Pages" onclick="clickManagerAllExcel()" style="font-size: 12px;"><i id="myIcon" class="far fa-file-excel text-primary" aria-hidden="true"></i></button>
+                            </div>
+                        </div>
+                        <!-- Accordian Filter -->
+                        <div class="d-flex justify-content-center">
+                            <div class="accordion " id="accordionExample">
+                                <div class="accordion-item">
+                                    <div id="collapseOne" class="accordion-collapse collapse"
+                                        aria-labelledby="headingOne" data-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            <div class="row">
+                                                <div class="m-2">
+                                                    <select class="form-control select2" id="employeenames"
+                                                        onchange="managertableEmployeeFilter()">
+                                                        <option value="">All Employees</option>
+
+                                                    </select>
+                                                </div>
+                                                <div class="m-2">
+                                                    <select class="form-control select2" id="managerprojectname"
+                                                        onchange="managertableProjectFilter()">
+                                                        <option value="">All Projects</option>
+
+                                                    </select>
+                                                </div>
+                                                <div class="m-2 ">
+                                                    <select class="form-control select2" id="managerprojecttask"
+                                                        onchange="managertableTaskFilter()">
+                                                        <option value="">All Tasks</option>
+                                                    </select>
+                                                </div>
+                                                <div class="m-2">
+                                                    <select class="form-control select2" id="manageractivity"
+                                                        onchange="managerTableFilter()">
+                                                        <option value="">All Activities</option>
+                                                    </select>
+                                                </div>
+                                                <div class="m-2">
+                                                    <select class="form-control select2" id="managerschool"
+                                                        onchange="managerTableFilter()">
+                                                        <option value="">All Schools</option>
+                                                    </select>
+                                                </div>
+                                                <div class="m-2">
+                                                    <select class="form-control select2" id="managerstatus"
+                                                        onchange="managerTableFilter()">
+                                                        <option value="">All Status</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- table -->
+                        <div class="table-responsive">
+                            <table class="table" id="managerconfirmationtable"
+                            style="font-size: 80%;">
+                            <thead class="bg-light">
+                                <th><input type="checkbox" name="select_all" value="1" id="select-all""></th>
+                                <th>Employee</th>
+                                <th >Date</th>
+                                <th>Project</th>
+                                <th>Task</th>
+                                <th>Activity</th>
+                                <th>School</th>
+                                <th>Hours</th>
+                                <th>Description</th>
+                                <th >Status</th>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+    <div class=" modal fade" id="modal-default" style="margin-top:10%">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-light" >
+                    <h5 class="modal-title ">Reason </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <textarea id="rejectionRemarks" rows="4" style="width:100%;font-size: 14px;border: 1px solid rgb(193, 189, 189);"></textarea>
+                </div>
+                <div class="modal-footer p-1">
+                    <button type="button" class="btn btn-sm btn-danger"  onclick="rejectSelectedList()">Reject</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+     <!-- /.modal-dialog -->
+    </div>
+</section>

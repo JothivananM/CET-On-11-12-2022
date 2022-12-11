@@ -1,0 +1,21 @@
+{
+    "ApprovalStatus": "Not Confirmed",
+    "CalculatedHours": "6.00000000000000",
+    "Timesheetcomment": "Completed Main Topics-1",
+    "ContractID": "K3",
+    "DateOfBooking": "2022-11-12",
+    "EmployeeID": "100987",
+    "EmployeeName": "santhosh kumar",
+    "StartTime": "PT3H00M00S",
+    "EndTime": "PT3H45M00S",
+    "LifeCycleStatus": "Not Released",
+    "TotalKMperday": "3000.00000000000000",
+    "PublicTransportAmount": "15.000000",
+    "ProjectTaskID": "TIMESHEET-2",
+    "ProjectTaskName": "frontend",
+    "SchoolId": "1001",
+    "SchoolDescription": "TEST SCHOOL",
+    "ServiceID": "20000004",
+    "TravellingBy": "CAR",
+    "Operation": "Create"
+}

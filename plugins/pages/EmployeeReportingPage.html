@@ -1,0 +1,117 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card" style="margin-top: 52px;" >
+                    <!-- Dynamic Header change had Applied -->
+                    <!-- <div class="card-header">
+                        <h3 class="m-2">EmployeeReporting Page</h3>
+                    </div> -->
+                    
+                    
+                    <div class="card-body pt-2 pl-3 pr-3 pb-1" >
+                        <div class="d-flex justify-content-between mb-1""">
+                            <div></div>
+                            <div>
+                                <label style="font-size: 14px;" class="">From :</label>
+                                <input type="date" class="form-control-sm" id="fromdate"
+                                    style="border:1px solid rgb(224, 223, 223); border-radius: 5px;" value="" onchange="managerFromDateFilter()">
+                                <label class="ml-3" style="font-size: 14px;">To :</label>
+                                <input type="date" class="form-control-sm" id="todate"
+                                    style="border:1px solid rgb(224, 223, 223);border-radius: 5px;" value="">
+                            
+                                <button type="button" class="btn btn-primary btn-sm" onclick="dateFilter()" style="font-size: 12px;"><i class="fas fa-search"></i></button>
+                                <button type="button" class="btn btn-primary btn-sm accordion-button" data-toggle="collapse"
+                                    aria-expanded="true" aria-controls="collapseOne" data-target="#collapseOne" style="font-size: 12px;"><i class="fas fa-light fa-filter" title="Advanced Search"></i></button>
+                            </div>
+                            <div>
+                                <button type="button" title="Download current page " value="Excel" id="btn-myIcon" class="btn btn-outline-success btn-sm " onclick="clickTheExcel()" style="font-size: 12px;"><i id="myIcon" class="fas fa-regular fa-file-excel text-green"></i></button>
+                                <button type="button" title="Download all pages " value="All Excel" id="btn-myIcon" class="btn btn-outline-primary btn-sm " onclick="clickTheAllExcel()" style="font-size: 12px;"><i id="myIcon" class="far fa-file-excel text-primary" aria-hidden="true"></i></button>
+                            </div>
+                        </div>
+                        <!-- Accordian Filter -->
+                        <div class="d-flex justify-content-center mr-5">
+                            <div class="accordion " id="accordionExample">
+                                <div class="accordion-item">
+                                    <div id="collapseOne" class="accordion-collapse collapse"
+                                        aria-labelledby="headingOne" data-parent="#accordionExample" >
+                                        <div class="accordion-body">
+                                            <div class="row">
+                                                
+                                                <div class="m-2">
+                                                    <select class="form-control select2" id="projectname"
+                                                        onchange="tableProjectFilter()">
+                                                        <option value="">All Projects</option>
+                                                                                                        
+                                                    </select>
+                                                </div>
+                                                <div class="m-2 ">
+                                                    <select class="form-control select2" id="projecttask"
+                                                        onchange="tableTaskFilter()">
+                                                        <option value="">All Tasks</option>
+                                                    
+        
+                                                    </select>
+                                                </div>
+                                                <div class="m-2">
+                                                    <select class="form-control select2" id="school"
+                                                        onchange="tableFilter()">
+                                                        <option value="">All Schools</option>
+                                                    </select>
+                                                </div>
+                                                <div class="m-2">
+                                                    <select class="form-control select2" id="activity"
+                                                        onchange="tableFilter()">
+                                                        <option value="">All Activities</option>
+                                                        
+                                                    </select>
+                                                </div>
+                                                <div class="m-2">
+                                                    <select class="form-control select2" id="status"
+                                                        onchange="tableFilter()">
+                                                        <option value="">All Status</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- table -->
+                        <div class="table-responsive ml-2 mr-2">
+                            <table class="table" id="employeereportingtable" style="font-size: 10px;">
+                                <thead class="bg-light">
+                                    <tr>
+                                        <th style="width: 9%;">Date</th>
+                                        <th style="width: 9%;">ProjectID</th>
+                                        <th style="width: 9%;">Project</th>
+                                        <th style="width: 9%;">Task ID</th>
+                                        <th style="width: 9%;">Task</th>
+                                        <th style="width: 9%;">Activity</th>
+                                        <th style="width: 9%;">SchoolID</th>
+                                        <th style="width: 9%;">School</th>
+                                        <th style="width: 9%;">Hours</th>
+                                        <th style="width: 10%;">Description</th>
+                                        <th style="width: 9%;">Status</th>
+                                    </tr>
+                                    
+                                </thead>
+                                <tbody>
+    
+                                </tbody>
+                            </table>
+                        </div>
+                       
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>

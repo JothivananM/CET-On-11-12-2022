@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html class="scroll-smooth">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title class="myTitle"></title>
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="dist/css/jquery.stickytable.min.css">
+  <!-- Protip -->
+  <!-- <link rel="stylesheet" href="http://www.jqueryscript.net/css/jquerysctipttop.css"> -->
+  <!-- <link rel="stylesheet" href="dist/css/jquery.timesetter.css"> -->
+  <link rel="stylesheet" href="dist/css/protip.min.css">
+  <!-- Select2 Bootsrap -->
+  <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+  <!-- Title Icon -->
+  <link rel="icon" href="dist/img/timesheet-icon.png">
+  <link href='https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.4.2/main.min.css' rel='stylesheet' />
+  <link href='https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@4.4.2/main.min.css' rel='stylesheet' />
+  <link href='https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@4.4.2/main.min.css' rel='stylesheet' />
+ 
+  <!-- toastr -->
+  <link rel="stylesheet" href="plugins/toastr/toastr.min.css">
+  <!-- fullCalendar -->
+ 
+  <link href='https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.4.2/main.min.css' rel='stylesheet' />
+  <link href='https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@4.4.2/main.min.css' rel='stylesheet' />
+  <link href='https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@4.4.2/main.min.css' rel='stylesheet' />
+
+
+  <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/themes/base/jquery-ui.min.css"  />
+  
+  <link rel="stylesheet" href="dist/css/style.css">
+  <!-- Datatable-->
+  <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+</head>
+
+<style>
+ #calendar {
+      max-width: 900px;
+      margin: 40px auto;
+    }
+
+#header-icon{
+  color: #0a366f;
+}
+fc-daygrid-day-frame fc-scrollgrid-sync-inner{
+  height: 10px !important;
+}
+
+/* #calendar button.fc-today-button:disabled,
+#calendar button.fc-today-button[disabled] {
+  background-color: #007bff !important;
+} */
+
+#calendar button.fc-today-button, button.fc-prev-button, button.fc-next-button {
+  display: none;
+}
+.fc-toolbar, .fc-toolbar.fc-header-toolbar{
+  padding: 0.25rem 1rem 0.25rem 1rem !important;
+}
+
+.fc-day-number {
+  font-size: 12 px !important;
+}
+
+.fc-left h2 {
+  /* font-size: 10px !important; */
+  /* display: none; */
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: lightgray;
+  position: absolute;
+  top: 2% !important;
+}
+
+.fc-head{
+    background-color:blue !important;
+}
+
+.fc .fc-toolbar {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.fc-fri { color:lightgray;background-color: #fafafa; }
+.fc-sat { color:lightgray; background-color: #fafafa;}
+
+@media only screen and (max-width: 1200px) {
+
+  #edit-link span{
+      display: none;
+  }
+  #edit-link button{
+      margin-bottom: 8px;
+  }
+
+}
+
+body {
+  overflow: auto  !important;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: lightgray; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(158, 145, 145, 0.575); 
+}
+
+
+</style>
+
+<body class="hold-transition sidebar-mini sidebar-collapse">
+
+ 
+
+    <div id="root">
+
+      <div class="wrapper">
+        
+          <nav class="main-header navbar navbar-expand navbar-white navbar-light fixed-top" style="height: 8% !important;">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+
+              <!-- <li class="nav-item">
+                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"style="color: rgb(36, 50, 65)"data-toggle="tooltip" data-placement="left" title="Toggle Sidebar"></i></a>
+              </li> -->
+             
+            </ul>
+              <h4 for="" class="headerName" style="position: absolute;left:43%;margin-top: 1% !important;"></h4>
+            <!-- Right navbar links -->
+            <ul class="navbar-nav ml-auto">
+              
+              <li class="nav-item">
+                <a class="nav-link toastrFullscreen" data-widget="fullscreen" href="#" role="button">
+                <div style="height: 100px; width: 100px; border-radius: 50%">
+
+                </div>
+                </a>
+              </li>
+             
+              <!-- Notifications Dropdown Menu -->
+              <!-- <li class="nav-item dropdown">  
+                <a class="nav-link" data-toggle="dropdown" href="#">
+                  <i class="far fa-bell"id="header-icon" data-toggle="tooltip" data-placement="left" data-fallbackPlacement='flip' title="Notifications"></i>
+                   <span class="badge badge-warning navbar-badge">15</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                  <span class="dropdown-item dropdown-header">Notifications</span>
+                  <div class="dropdown-divider"></div>
+                  <a href="#" class="dropdown-item">
+                    <i class="fas fa-location-arrow mr-2" id="header-icon"></i> Released
+                    
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a href="#" class="dropdown-item">
+                    <i class="fas fa-thumbs-up mr-2" id="header-icon"></i> Approved
+                    
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a href="#" class="dropdown-item">
+                    <i class="fas fa-exclamation-triangle mr-2" id="header-icon"></i> Rejected
+                   
+                  </a>
+                  
+                </div>
+              </li> -->
+         
+              <li class="nav-item dropdown">
+                <a href="#" class="nav-link" data-toggle="dropdown">
+                    <!-- <i class="far-thin fa-gear"></i> -->
+                    <i class="far fa-sun"id="header-icon"data-toggle="tooltip" data-placement="left" title=""></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                    <span class="dropdown-item dropdown-header profile-username"></span>
+                    <div class="dropdown-divider"></div>
+                    <a href="/ProfilePage" class="dropdown-item" onClick="route()" id="ProfilePage">
+                      <i class="fas fa-user-tie mr-2" id="header-icon"></i>Profile
+                    </a>
+                    <!-- <div class="dropdown-divider"></div>
+                    <a href="change-password" class="dropdown-item"   onClick="route()" id="">
+                      <i class="fas fa-edit mr-2" id="header-icon"></i>Change Password
+                    </a> -->
+                    <div class="dropdown-divider"></div>
+                    <a href="/index.html" class="dropdown-item" onclick="logout()">
+                        <i class="fas fa-sign-out-alt mr-2" id="header-icon"></i>Log out
+                    </a>
+                  </div>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link toastrFullscreen" data-widget="fullscreen" href="#" role="button">
+                  <i class="fas fa-expand-arrows-alt" id="header-icon"data-toggle="tooltip" data-placement="left" title="Toggle Fullscreen"></i>
+                </a>
+              </li>
+              <!-- <li class="nav-item">
+                <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#" role="button">
+                  <i class="fas fa-th-large"></i>
+                </a>
+              </li> -->
+            </ul>
+          </nav>
+
+    </div>
+
+    <aside class="main-sidebar sidebar-dark-primary sidebar-no-expand" style="position: fixed; background-color: #0a63b1;font-size: 14px;" id="my-sidebar">
+        <!-- Brand Logo #001d44-->
+        <div class="brand-link">
+          <img src="dist/img/timesheet-icon.png" alt="AdminLTE Logo" class="brand-image">
+          <span class="brand-text font-weight-light" style="font-size: 20px; color: rgb(253, 242, 242); font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Timesheet Portal</span></b>
+         </div>
+    
+        <!-- Sidebar -->
+        <div class="sidebar">
+         
+          <nav class="mt-2">
+
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false" id="ul-div">
+              
+              <li class='nav-item my-nav-item' style="cursor: pointer;">
+                <a href="/EmployeeTimeBooking" class='nav-link my-item protip' 
+                data-pt-title="Time Booking" data-pt-scheme = 'blue' data-pt-mixin='css-bold' 
+                data-pt-animate='wobble' data-pt-position='right'  
+                data-pt-size = "small" data-pt-gravity="false" data-pt-offset-left = 10
+                onClick='route()'id='EmployeeTimeBookingPage'><i class='nav-icon far fa-calendar-plus' id='Employee TimeBooking'></i><p>Time Booking</p></a>
+              </li> 
+              
+              <!-- <li class='nav-item my-nav-item' style="cursor: pointer;">
+                <a href="/SupplierContractReporting" class='nav-link my-item protip'
+                data-pt-title="Supplier Contract Report" data-pt-scheme = 'blue' data-pt-mixin='css-bold' 
+                data-pt-animate='wobble' data-pt-position='right'  
+                data-pt-size = "small" data-pt-gravity="false" data-pt-offset-left = 10
+                onClick='route()'id='SupplierContractReportingPage'><i class='nav-icon fas fa-users' id='item-id'></i><p>Supplier Contract</p></a> 
+              </li>  -->
+              <!-- <li class='nav-item my-nav-item' style="cursor: pointer;">
+                <a href="/SupplierPOReporting" class='nav-link my-item protip'
+                data-pt-title="Supplier PO Report" data-pt-scheme = 'blue' data-pt-mixin='css-bold' 
+                data-pt-animate='wobble' data-pt-position='right'  
+                data-pt-size = "small" data-pt-gravity="false" data-pt-offset-left = 10
+                onClick='route()'id='SupplierPOReportingPage'><i class='nav-icon far fa-file-alt' id='item-id'></i><p>Supplier PO Reporting</p></a> 
+              </li> -->
+              <!-- <li class='nav-item my-nav-item' style="cursor: pointer;">
+                <a href="/BuyerResponsibleReportingApproval" class='nav-link my-item protip'
+                data-pt-title="Buyer Responsible Report" data-pt-scheme = 'blue' data-pt-mixin='css-bold' 
+                data-pt-animate='wobble' data-pt-position='right'  
+                data-pt-size = "small" data-pt-gravity="false" data-pt-offset-left = 10
+                onClick='route()'id='BuyerResponsibleReportingApprovalPage'><i class='nav-icon fas fa-shopping-bag' id='item-id'></i><p>Buyer Responsible</p></a> 
+              </li> -->
+              <li class='nav-item my-nav-item' style="cursor: pointer;">
+                <a href="/EmployeeReporting" class='nav-link my-item protip'
+                data-pt-title="Report" data-pt-scheme = 'blue' data-pt-mixin='css-bold' 
+                data-pt-animate='wobble' data-pt-position='right'  
+                data-pt-size = "small" data-pt-gravity="false" data-pt-offset-left = 10
+                onClick='route()'id='EmployeeReportingPage'><i class='nav-icon far fa-id-badge' id='item-id'></i><p>Report</p></a> 
+              </li>
+              <li class='nav-item my-nav-item' style="cursor: pointer;" id="ec4-ManagerTimesheetConfirmationPage">
+                <a href="/ManagerConfirmation" class='nav-link my-item protip'
+                data-pt-title="Time Confirmation" data-pt-scheme = 'blue' data-pt-mixin='css-bold' 
+                data-pt-animate='wobble' data-pt-position='right'  
+                data-pt-size = "small" data-pt-gravity="false" data-pt-offset-left = 10
+                onClick='route()'id='ManagerTimesheetConfirmationPage'><i class='nav-icon far fa-calendar-check' id='item-id'></i><p>Time Confirmation</p></a> 
+              </li>
+              <li class='nav-item my-nav-item' style="cursor: pointer;" id="ec4-ManagerPayrollProcessingPage">
+                <a href="/ManagerPayrollProcessing" class='nav-link my-item protip'
+                data-pt-title="Payroll Approval" data-pt-scheme = 'blue' data-pt-mixin='css-bold' 
+                data-pt-animate='wobble' data-pt-position='right'  
+                data-pt-size = "small" data-pt-gravity="false" data-pt-offset-left = 10
+                onClick='route()'id='ManagerPayrollProcessingPage'><i class='nav-icon fas fa-hand-holding-usd' id='etb-id'></i><p>Payroll Approval</p></a> 
+              </li> 
+              <!-- <li class='nav-item my-nav-item'>
+                <a href="/SupplierReportingStatus" class='nav-link my-item protip'
+                data-pt-title="Supplier Report Status" data-pt-scheme = 'blue' data-pt-mixin='css-bold' 
+                data-pt-animate='wobble' data-pt-position='right'  
+                data-pt-size = "small" data-pt-gravity="false" data-pt-offset-left = 10
+                onClick='route()'id='SupplierReportingStatusPage'><i class='nav-icon fas fa-file' id='item-id'></i><p>Supplier Report Status</p></a> 
+              </li>     -->
+                        <!--Sidebar Menu which gets Populated Dynamically -->
+            </ul>
+       
+          </nav>
+          <!-- /.sidebar-menu -->
+        </div>
+        <!-- /.sidebar -->
+    </aside>
+    
+   
+    <!-- Main Content goes here -->
+    <div class="content-wrapper">  
+
+
+        <!-- Loader Animation -->
+
+
+        <!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <!-- <div class="modal-header"> -->
+        <!-- <h5 class="modal-title" id="exampleModalLongTitle"></h5> -->
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button> -->
+      <!-- </div> -->
+        <div class="modal-body">
+
+          <div class="preloader-wrapper">
+            
+
+
+                <div>
+                  <span>Loading ...</span>
+                </div>
+          </div>
+
+        </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div> -->
+    </div>
+  </div>
+</div>
+
+
+          <!-- <div class="loader-container">
+                <div class="ring"></div>
+                <div class="ring"></div>
+                <div class="ring"></div>
+          </div> -->
+        
+
+     
+        <section class="content">
+          
+          <!-- <div id="my-loading" style="background-color: rgb(204, 191, 191); height: 100%;">
+            <img id="my-loading" src="dist/img/barLoader.gif" alt="Loading..." style="position: absolute; top:40%; left:55%; z-index: 99;" />
+          </div> -->
+
+
+          <div class="row calendar-content" style="display: none;">
+            <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+              Launch demo modal
+            </button> -->
+            <div class="col-6">
+              <div class="card" style="margin-top: 12%;margin-left: 2%;">
+                <div class="card-body p-0">
+
+                      <button type="button" id="my-prev-button" title="Go to previous month" style="position: absolute;top:2%;left:74%;" 
+                        class="btn btn-light btn-sm"><i class="fas fa-angle-double-left"></i></button>
+
+                        <button type="button" id="my-today-button" title="Go to today" style="position: absolute;top:2%;left:80%;" 
+                      class="btn btn-light btn-sm">Today</button>
+
+                      <button type="button" id="my-next-button" title="Go to next month" style="position: absolute;top:2%;left:90%;" 
+                      class="btn btn-light btn-sm"><i class="fas fa-angle-double-right"></i></button>
+                      
+                      
+                    
+                    
+                      <!-- Calender Div -->
+                        <div id="calendar" style="margin: 5%; border:none !important;"></div>
+
+
+
+                </div>
+                <!-- /.card-body -->
+                <!-- <div class="card-footer"> -->
+                  <div class="row">
+                    <div class="col-5">
+  
+                    </div>
+                    <div class="col-7">
+                      <div class="mb-5" style="margin-right: 8%; text-align: right;">
+                        <span style="height: 10px;width: 10px;background-color: #6C757D;border-radius: 30%;display: inline-block;"></span>
+                        <span class="text-sm p-1">Not Confirmed</span>
+                        <span style="height: 10px;width: 10px;background-color: green;border-radius: 30%;display: inline-block;white-space: nowrap;"></span>
+                        <span class="text-sm p-1">Confirmed</span>
+                        <span style="height: 10px;width: 10px;background-color: red;border-radius: 30%;display: inline-block;"></span>
+                        <span class="text-sm p-1">Rejected</span>
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+                  
+                  <div style="margin-top: 12%;margin-left: 2%; margin-right: 2%;">
+
+                    <button type="button" class="btn btn-secondary mb-3 btn-sm" id="btn-addTasks"
+                      title="Add new task" 
+                     onclick="addCard()">Book Time</button>
+
+                     <label class="taskDate text-secondary" style="font-size: 20px; position: absolute; left:69%; top:9%;"></label>
+
+                     <!-- <button type="button" class="btn btn-light mb-3 protip" id="btn-addRemove" style="float: right; display: none;"
+                      title="clear all" 
+                     onclick="removeCards()"><i class="fas fa-minus"></i></button> -->
+                   <div class="classCards" id="parentCard">
+
+                      <!-- Card Template -->
+                      <div class="card collapsed-card" id="cardTemplate" style="display: none;">
+                        
+                        
+                        <div class="card-header cardPointer close-icon" data-card-widget="collapse" data-target="">
+                            <div class="card-title d-flex justify-content-between">
+                                <div><strong class="cardHeader">New Task</strong></div>
+                                <div>&nbsp;<span class="cardDate">&nbsp;</span></div>
+                                <!-- <div>-Confirmed</div> -->
+                            </div>
+            
+                            <!-- <div class="card-tools">
+                              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus" onclick="toggleCard(this)"></i>
+                              </button>
+                            </div> -->
+                            <!-- /.card-tools -->
+                          </div>
+                        <!-- /.card-header -->
+                          <div class="card-body" id="cardBody"  data-parent="#parentCard" id="">
+
+
+                              <div class="container mb-2">
+                                <div class="row">
+                                    <div class="col-md-6">
+
+                                        <label for="Task">Task </label>
+                                        <input class="form-control form-control-sm task" data-taskid="" data-timeagreementuuid="" data-timeuuid="" data-itemuuid="" data-timetextuuid="">
+                                        <!-- <select class="form-control task" data-taskid="" data-timeagreementuuid="" data-timeuuid="" data-itemuuid="" data-timetextuuid="" onchange="taskSelect(this)">
+                                        </select> -->
+
+                                    </div>
+                                    <div class="col-md-6">
+
+                                        <label for="Project">Project </label>
+                                        <input class="form-control form-control-sm  project" data-projectid="" placeholder="Project ID : Project" disabled>
+
+                                    </div>
+                                </div>
+                                <div class="row">
+
+                                  <div class="col-md-6">
+
+                                      <label for="Activity">Activity</label>
+                                      <input class="form-control form-control-sm activity" data-activityid="">
+
+                                  </div>
+
+                                  <div class="col-md-6">
+
+                                    <label for="Hours">Hours </label>
+                                    <!-- <div class="myTimesetter"></div> -->
+                                    <input class="form-control form-control-sm hours">
+
+                                  </div>
+
+                                </div>
+                                <div class="row">
+
+                                  <div class="col-md-6">
+
+                                    <label for="School">School </label>
+                                    <input class="form-control form-control-sm school" data-schoolid="">
+
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <label for="Description">Description </label>
+                                    <textarea class="form-control form-control-sm description" placeholder="Add Details"></textarea>
+                                </div>
+
+                                <div class="col-md-6 div-rejectedReason" style="display: none;">
+                                  <label for="rejectedReason">Reason </label>
+                                  <textarea class="form-control form-control-sm rejectedReason" value=""disabled></textarea>
+                                </div>
+
+                                </div>
+                              </div>
+                              
+                            <div class="d-flex justify-content-between mt-3">
+                              <div>
+                                <label class="statusText lead">Not Confirmed</label>
+                              </div>
+                              <div>
+                                <input type="button" value="Submit" class="btn btn-primary btn-sm mr-1 btnSubmit" onclick="modifyTimesheet(this)">
+                                <input style="display: none;" type="button" value="Clear" class="btn btn-secondary btn-sm btnClear" data-toggle="modal" data-target="#modal-sm" onclick="clearCard(this,'card')">
+                                
+                              </div>
+                            </div>
+
+                          </div>
+                        <!-- </div> -->
+                        <!-- /.card-body -->
+                      </div>
+
+                    <!-- Cards Here -->
+                   
+                   </div>
+
+                    
+                  </div>
+
+                
+            </div>
+        </div>
+
+              
+      </section>
+      <!-- <section class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+           
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-left">
+                <li class="breadcrumb-item"><a href="/admin" onClick="route()" id="home-id">Home</a></li>
+                <li class="breadcrumb-item active">Dashboard</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </section> -->
+    
+          <!-- Main Content Goes Here -->
+
+          <form id="quickForm" method="post" >
+            <div id="main-page">
+        
+                
+            </div>
+          </form>
+      <!-- /.card-body -->
+
+      <!-- <button id="to-top" class="btn bg-gradient-primary back-to-top" onclick="scrollToTop()">
+        <i class="fas fa-chevron-up" data-toggle="tooltip" data-placement="top" title="Go To Top"></i>
+      </button> -->
+     
+    </div> 
+  
+    <!-- <footer class="text-sm" style="text-align: center;">
+
+        <span>Copyright &copy; <span id="current-year"></span> <a href=""></a>.</span>
+        All rights reserved.
+       
+      </footer>
+      -->
+    </div>
+  </body>
+
+<!-- Jquery -->
+<script src="plugins/jquery/jquery.min.js"></script>
+<!-- <script src="js/jquery.stickytable.min.js"></script> -->
+<script>
+//  window.onload = function(){ document.getElementById("my-loading").style.display = "none" }
+
+</script>
+<!-- <script src="dist/js/jquery.timesetter.js"></script> -->
+<script src="js/protip.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+<!-- Jquery-UI -->
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-ui.autocomplete.scroll@0.1.9/jquery.ui.autocomplete.scroll.min.js"></script>
+<script>
+//   $.extend($.ui.autocomplete.prototype.options, {
+// 	open: function(event, ui) {
+// 		$('.school').autocomplete("widget").css({
+//             "width": ($(this).width() + "10px")
+//         });
+//     }
+// });
+</script>
+<script src="js/adminlte.min.js"></script>
+<script src="plugins/moment/moment.min.js"></script>
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.js"></script> -->
+<!-- <script src="plugins/fullcalendar/main.js"></script> -->
+<!-- <script src="plugins/fullcalendar/main.min.js"></script> -->
+<!-- <script src="plugins/fullcalendar/locales-all.js"></script> -->
+<!-- Select2 Bootstrap -->
+<script src="plugins/select2/js/select2.full.min.js"></script>
+<!-- Duration Picker -->
+<!-- <script src="js/html-duration-picker.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/html-duration-picker@latest/dist/html-duration-picker.min.js"></script> -->
+<!-- Validation JQuery -->
+<script src="plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="plugins/jquery-validation/additional-methods.min.js"></script><!-- toastr -->
+<script src="plugins/toastr/toastr.min.js"></script>
+<!-- Sweetalert -->
+<script src="dist/sweetalert2/sweetalert.min.js"></script>
+<!--Datatable Plugins-->
+<script src="plugins/datatables/jquery.dataTables.min.js"></script>
+
+<script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="plugins/jszip/jszip.min.js"></script>
+<!-- <script src="plugins/pdfmake/pdfmake.min.js"></script>
+<script src="plugins/pdfmake/vfs_fonts.js"></script> -->
+<script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<!-- <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script> -->
+<script src="https://cdn.datatables.net/fixedheader/3.3.1/js/dataTables.fixedHeader.min.js"></script>
+<script src="plugins/nested-datatables/dist/nested.tables.min.js"></script>
+<!-- Index -->
+<script src="js/index.js"></script>
+<script src="js/ProfilePage.js"></script>
+
+<script src="js/dashboard.js"></script>
+
+<script src="js/EmployeeReportingPage.js"></script>
+
+<script src="js/ManagerTimesheetConfirmationPage.js"></script>
+<script src="js/EmployeeTimeBookingPage.js"></script>
+
+<script src="js/ManagerPayrollProcessingPage.js"></script>
+<!-- Router -->
+<script src="js/router.js"></script>
+
+
+<script src='https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.4.2/main.min.js'></script>
+ <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/interaction@4.4.2/main.min.js'></script>
+ <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@4.4.2/main.min.js'></script>
+ <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@4.4.2/main.min.js'></script>
+ <script src="plugins/fullcalendar/locales/he.js"></script>
+
+</html>

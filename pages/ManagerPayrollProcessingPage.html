@@ -1,0 +1,122 @@
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card" style="margin-top: 5%;">
+          <div class="card-body pt-0 pl-2 pr-2 pb-0" >
+            <div class="d-flex justify-content-between mb-1 ">
+              <div class="row">
+                <div class="mt-2 ml-2">
+                  <select class="form-control form-control-sm select2" style="width: 100%;" id="selectMonth" >
+                  </select>
+                </div>
+                <div class="mt-2 ml-1">
+                  <select class="form-control form-control-sm select2" style="width: 100%;" id="selectYear">
+                  </select>
+                </div>
+                <div class="ml-1" style="margin-top: 0.5% ;">
+                  <button type="button" class="btn btn-primary btn-sm mt-2" onclick="monthyearchange()" style="font-size: 12px;"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="m-2">
+                  <select class="form-control form-control-sm select2" style="width: 100%;" id="managerpayrollemployeenames" onchange="payrollEmployeeFilter()">
+                    <option value="">All Employees</option>
+                  </select>
+                </div>
+                <div class="m-2">
+                  <select class="form-control form-control-sm select2" style="width: 100%;" id="managerpayrollstatus" onchange="payrollManagerTableFilter()">
+                    <option value="">All Status</option>
+                  </select>
+                </div>
+              </div>
+              <!-- <div>
+                  <button type="button" value="Excel" id="myIcon" class="btn btn-outline-success btn-sm" title="Save Current Page" onclick="clickManagerExcel()" style="font-size: 12px;"><i id="myIcon" class="fas fa-regular fa-file-excel text-green"></i></button>
+                  <button type="button" value="All Excel" id="myIcon" class="btn btn-outline-primary btn-sm" title="Download All Pages" onclick="clickManagerAllExcel()" style="font-size: 12px;"><i id="myIcon" class="fa fa-download text-primary" aria-hidden="true"></i></button>
+              </div> -->
+            </div>
+            <div class="row col-12">
+              <div class="table-responsive">
+                <table class="table" cellspacing="0" id="managerpayrolltable"
+                  style="text-align: center; font-size: 85%;">
+                  <thead class="bg-light">
+                    <th>Month-Year</th>
+                    <th>Employee Name</th>
+                    <th>Total Reported Hours</th>
+                    <th>Status</th>
+                  </thead>
+                  <tbody>
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!-- <div class="row m-1">
+              <div class="d-flex justify-content-between">
+                  <button type="button" id="addRow" class="btn btn-primary mb-2" style="font-size: 12px;" onclick="AddRow()">Add</button>
+                  <button type="button" id="save" class="btn btn-primary mb-2 ml-2" style="font-size: 12px;" onclick="saveData()">Save</button>
+                
+                <div id="sumofHours" style="margin-left: 66%;">
+                  <label class="ml-2" style="font-size:80%;">Total Reported Hours :</label><input type="text" class="ml-2" style="width:10%; font-size: 75%;" id="totalReportedHours" />
+                  <label class="ml-2" style="font-size:80%;">To be Approved Hours :</label><input type="text" class="ml-2" style="width:10%; font-size: 75%;" id="sumofapproved" />
+                </div>
+              </div>
+              
+            </div> -->
+              <div class="d-flex justify-content-between m-2">
+                  <div>
+                    <button type="button" id="addRow" class="btn btn-sm btn-primary mb-2" style="font-size: 12px;" onclick="AddRow()">Add</button>
+                    <button type="button" id="save" class="btn btn-sm btn-primary mb-2 ml-2" style="font-size: 12px;" onclick="saveData()">Save</button>
+                  </div>
+                  <div>
+
+                  </div>
+                <div id="sumofHours">
+                  <label style="font-size:80%;">Total Reported Hours : &nbsp;</label><input type="text" class="mr-2" style="width:10%; font-size: 75%;" id="totalReportedHours" />
+                  <label style="font-size:80%;">To be Approved Hours : &nbsp;</label><input type="text" class="" style="width:10%; font-size: 75%;" id="sumofapproved" />
+                </div>
+
+              </div>
+              
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="table-responsive">
+                  <table class="table display" id="managerpayrolldetailstable"
+                    style="font-size: 85%; border-bottom: 1px solid rgb(238, 238, 238);width: 100%;">
+                    <thead class="bg-light">
+                        <th ></th>
+                        <th >Type of Hours</th>
+                        <th >ProjectID</th>
+                        <th >Project</th>
+                        <th >Reported Hours</th>
+                        <th >Reported Hours(%)</th>
+                        <th >To be Approved</th>
+                    </thead>
+                    <tbody>
+      
+                    </tbody>
+                  </table>
+                </div> 
+              </div>
+              <!-- <div class="col-sm-4">
+                <div>
+                  <div class="table-responsive">
+                    <table class="table "  cellspacing="0" id="managerpayrolltaskdetailstable"
+                      style="text-align: center; font-size: 12px;">
+                      <thead>
+                          <th>Task</th>
+                          <th>Reported Hours (%)</th>
+                      </thead>
+                      <tbody>
+        
+                      </tbody>
+                    </table>
+                  </div>  
+                </div>
+                
+              </div>            -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

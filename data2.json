@@ -1,0 +1,20 @@
+{
+  "ApprovalStatus": "Not Confirmed",
+  "CalculatedHours": "1:0",
+  "Timesheetcomment": "des",
+  "ContractID": "K3",
+  "DateOfBooking": "2022-12-10",
+  "EmployeeID": "100987",
+  "EmployeeName": "Santhosh",
+  "StartTime": "PT22H06M00S",
+  "EndTime": "PT23H06M00S",
+  "LifeCycleStatus": "Not Released",
+  "ProjectTaskID": "TIMESHEET-2",
+  "ProjectTaskName": "FRONT-END",
+  "SchoolId": "15082 ",
+  "SchoolDescription": " TRINITY COLLEGE LONDON ",
+  "ServiceID": "20000004",
+  "TravellingBy": "PublicTransport",
+  "Operation": "Create",
+  "PublicTransportAmount": "20"
+}

@@ -1,0 +1,3 @@
+function contractReport () {
+    alert();
+}

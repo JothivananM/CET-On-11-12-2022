@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Bootsrap -->
+    <link rel="icon" href="dist/img/timesheet-icon.png" />
+    <!-- toastr -->
+    <link rel="stylesheet" href="plugins/toastr/toastr.min.css" />
+    <link rel="stylesheet" href="dist/css/adminlte.min.css" />
+    <title>Timesheet | Login</title>
+  </head>
+
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .img-illustration {
+      margin-top: 3rem;
+      padding: 2rem;
+      border-right: 1px solid lightgray;
+    }
+
+    
+  </style>
+
+  <body>
+    <section
+      class="vh-100"
+      style="
+        background: rgb(89, 86, 143);
+        background: linear-gradient(
+          90deg,
+          rgb(46, 45, 70) 0%,
+          rgb(141, 141, 193) 0%,
+          rgba(140, 157, 255, 1) 52%
+        );
+      "
+    >
+      <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col col-xl-9">
+            <div class="card" style="border-radius: 1rem">
+              <div class="row g-0">
+                <div class="col-md-6 col-lg-5 d-none d-md-block">
+                  <img
+                    src="dist/img/timesheet_login.png"
+                    alt="login form"
+                    class="img-illustration img-fluid"
+                  />
+                </div>
+                <div class="col-md-6 col-lg-7 align-items-center section-landing" style="margin-top: 5rem;">
+                  <div class="card-body p-4 p-lg-5 text-black">
+                    <input type="button" value="Supplier Login" class="btn btn-outline-primary btn-block" id="hide"/>
+                    
+                    <!-- Local Links -->
+                    <a
+                    href="https://cet.auth.eu-central-1.amazoncognito.com/oauth2/authorize?response_type=token&identity_provider=CETIDP&client_id=3kcg9798q61gpm5j7i7q63gd2o&redirect_uri=http://localhost:5501/dashboard.html&scope=email+openid+aws.cognito.signin.user.admin+https://employee-timesheet-rs.info/employee.all">
+                      <input type="button" value="Employee Login (CET)" onclick="employeeLogin()" class="btn btn-outline-primary btn-block" style="margin-top: 2rem;"/>
+                    </a>
+                    <a
+                    href="https://cet.auth.eu-central-1.amazoncognito.com/oauth2/authorize?response_type=token&identity_provider=NipurnaAzure&client_id=3kcg9798q61gpm5j7i7q63gd2o&redirect_uri=http://localhost:5500/dashboard.html&scope=email+openid+aws.cognito.signin.user.admin+https://employee-timesheet-rs.info/employee.all">
+                      <input type="button" value="Employee Login (Test)" onclick="employeeLogin()" class="btn btn-outline-primary btn-block" style="margin-top: 2rem;"/>
+                    </a>
+                    <!-- Server Links -->
+                    <!-- <a
+                    href="https://cet.auth.eu-central-1.amazoncognito.com/oauth2/authorize?response_type=token&identity_provider=CETIDP&client_id=3kcg9798q61gpm5j7i7q63gd2o&redirect_uri=https://master.d2k7qbs5p2sksn.amplifyapp.com/dashboard.html&scope=email+openid+aws.cognito.signin.user.admin+https://employee-timesheet-rs.info/employee.all">
+                      <input type="button" value="Employee Login (CET)" onclick="employeeLogin()" class="btn btn-outline-primary btn-block" style="margin-top: 2rem;"/>
+                    </a>
+                    <a
+                    href="https://cet.auth.eu-central-1.amazoncognito.com/oauth2/authorize?response_type=token&identity_provider=NipurnaAzure&client_id=3kcg9798q61gpm5j7i7q63gd2o&redirect_uri=https://master.d2k7qbs5p2sksn.amplifyapp.com/dashboard.html&scope=email+openid+aws.cognito.signin.user.admin+https://employee-timesheet-rs.info/employee.all">
+                      <input type="button" value="Employee Login (Test)" onclick="employeeLogin()" class="btn btn-outline-primary btn-block" style="margin-top: 2rem;"/>
+                    </a>
+                     -->
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-7 align-items-center test" id="section-login">
+                  <div class="card-body p-4 p-lg-5 text-black">
+
+                    <form id="form-id" name="form-login" onsubmit=return false;>
+                      <!-- <div class="d-flex align-items-center mb-3 pb-1">
+                          <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
+                          <span class="h1 fw-bold mb-0">&nbsp;Nipurna IT</span>
+                        </div> -->
+
+                      <h5
+                        class="fw-normal mb-3 pb-3"
+                        style="letter-spacing: 1px"
+                      ></h5>
+
+                      <div class="form-outline form-group mb-4">
+                        <label class="form-label" for="name-username"
+                          >Username</label
+                        >
+                        <input
+                          type="text"
+                          id="text-username"
+                          name="email"
+                          class="form-control form-control-lg"
+                          autofocus
+                        />
+                      </div>
+
+                      <div class="form-outline form-group mb-4">
+                        <label class="form-label" for="name-password"
+                          >Password</label
+                        >
+                        <input
+                          type="password"
+                          id="password"
+                          name="password"
+                          class="form-control form-control-lg"
+                        />
+                      </div>
+
+                      <div class="pt-1 mb-4">
+                          <button class="btn btn-dark btn-lg btn-block" >Login</button>
+                          <!-- <input                          
+                          class="btn btn-dark btn-lg btn-block"
+                          type="button"
+                          name="login"
+                          value="Login"
+                          > -->
+                        
+                      </div>
+
+                      <div class="d-flex justify-content-between">
+                        <div>
+                         <!-- <a
+                            href="https://login.microsoftonline.com/aa802978-4f50-4c5e-94f7-d5be16b02759/saml2?SAMLRequest=fVLLTsMwELzzFZHvTmI3blOrCapASEhwAQoSF%2BQ6m2IpsYPXQcDX46YtggvHXc1jNbOr84%2B%2BS97Bo3G2IizNSQJWu8bYXUU2D1e0JOf12QpV3%2FFBrsfwau%2FgbQQMyRoRfIi8C2dx7MHfg383GjZ3NxV5DWFAmWUaQqoiKx2RgsJAWap69eWix86a4FLt%2BmxSz0wzeMAhigFJLqODsSpMZ53EOrczNu2N9g5dG5ztjIVJQaky58tFSYtW5LTQAuiyaBe0EVtg823OF2J5sCHJ9WVFXvSyADZbzGmreUMLzhjdirKhYtuyGRNqzkQZoYgjXFsMyoaK8JxzGoF58cByyXMpWMrE7Jkkj6cA%2BT7AGKlFeYisIqO30ik0KK3qAWXQ8n59eyMjVA7eBaddR%2BpDwnIy9MmV870K%2F3P3G9PQdoJKsMGEzz%2Fe%2F9PVqT1S72GHUuSxFYmD%2FCnsRQ1cFJu1eFplv6%2Bsj%2BPft6i%2FAQ%3D%3D&RelayState=H4sIAAAAAAAAAD1R0W6jMBD8Fz8HUogxgTd6qEl7oW0UEpKcTpHBxjjBmGBTaKr--zkn3T3trGZ2tDv7BTAIQa8sipW2nBNuXQ9uIy8DE5AbJrr1HY1i0xWmQ3OX-DXjqMhZ9RH01Jmx_FpepTACYgSV1q0Kp9NhGGw6YtHW1C6kmBqaGrqQhBpYGriJkpWBDIS_AB6UUbGGa2krbmpj94p2NiaCN_dRgXltqmxpw4kBbSWbu1HbyZLXFPyegIvxPK26fTsvZP58rp1DubOOZ_T-zooieZmxh9nw1L7RuBI_17tF7KOajHM9vOpXyA_uj1uaPi5hkydOenzs4BivR7V-vp5cjZcDQpI9vbHq5dMVKB53mYOrNWOHc7IKupnm-GrdNvF23OT-3skCRXfpcu4P-0u9SEt43GYnlOSbREd5tvCiC8fKLF_fA6Haxr2u7P8fsLHAN9n8i6P4G60AoYOQ73m-6znmbBCWuFZ0Ajrj4cECBijwLExybMHSh1ZAHqgFA4oJcX0SUA98_wHlaVek6QEAAA.H4sIAAAAAAAAAAEgAN__wZm2sg2FYe3g6le-YBQom4P3XZ_qzPavlDqvCoTxKe3Q-a_kIAAAAA.4"
+                            class="large text-blue"
+                            style="cursor: pointer"
+                            >Microsoft Login
+                          </a> -->
+                          <!-- <span class="large text-muted">Privacy policy</span> -->
+                        </div>
+
+                        <div>
+                          <!-- <a
+                            href="Forgottenpassword.html"
+                            class="large text-blue"
+                            style="cursor: pointer"
+                            >Forgotten password?
+                          </a> -->
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="/plugins/jquery/jquery.min.js"></script>
+    <script>
+      $(document).ready(function(){
+        $(".test").hide();
+        $("#hide").click(function(){
+          $(".section-landing").hide();
+          $(".test").fadeIn();
+        });       
+      });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="plugins/jquery-validation/jquery.validate.min.js"></script>
+    <script src="plugins/jquery-validation/additional-methods.min.js"></script>
+    <script src="plugins/toastr/toastr.min.js"></script>
+    <script src="js/adminlte.min.js"></script>
+    <script src="dist/sweetalert2/sweetalert.min.js"></script>
+    <script src="js/amazon-cognito-identity.min.js"></script>
+    <script src="js/aws-sdk.min.js"></script>
+
+    <!-- <script src="/js/index.js"></script> -->
+     <script src="js/index.js"></script>
+    <script>
+$(function () {
+      $.validator.setDefaults({
+        submitHandler: function () {
+          loginUser();
+        }
+      });
+      $('#form-id').validate({
+        rules: {
+          email: {
+            required: true,
+            email: true,
+          },
+          password: {
+            required: true,
+            minlength: 5
+          },
+        },
+        messages: {
+          email: {
+            required: "Please enter a email address",
+            email: "Please enter a valid email address"
+          },
+          password: {
+            required: "Please provide a password",
+            minlength: "Your password must be at least 5 characters long"
+          },
+        },
+        errorElement: 'span',
+        errorPlacement: function (error, element) {
+          error.addClass('invalid-feedback');
+          element.closest('.form-group').append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+          $(element).addClass('is-invalid');
+        },
+        unhighlight: function (element, errorClass, validClass) {
+          $(element).removeClass('is-invalid');
+        }
+      });
+    });
+    </script>
+  
+  </body>
+</html>
